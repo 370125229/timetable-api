@@ -53,7 +53,7 @@
 ```javascript
 {
     "meta": {
-        "msg": "用户创建成功",
+        "msg": "注册成功",
         "status": 200
     }
 }
@@ -82,10 +82,9 @@
 | college  | 学院        |                 |
 | type     | 类型        |老师为0 ,学生为1 |
 | campusId | 校园网账号  |                |
-| timetable| 课表数据    |                 |
 | token    | 令牌        | 基于 jwt 的令牌 |
-| msg       | 返回消息     |      |
-| status      | 请求状态 |      |
+| msg       | 返回消息   |                |
+| status    | 请求状态   |                |
 
 * 响应数据
 
@@ -96,9 +95,8 @@
         "username": "张三",
         "mobile": "123",
         "college": "",
-        "type": "0",
+        "type": "1",
         "campusId": "20183000000",
-        "timetable": {},
         "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE1MTI1NDQyOTksImV4cCI6MTUxMjYzMDY5OX0.eGrsrvwHm-tPsO9r_pxHIQ5i5L1kX9RX444uwnRGaIM"
     },
     "meta": {
@@ -108,7 +106,50 @@
 }
 ```
 
-## xls文件上传
+## 课表
+
+### 课表数据接口
+* 请求路径：timetable
+* 请求方法：get
+* 请求参数
+
+| 参数名   | 参数说明 | 备注     |
+| -------- | -------- | -------- |
+|          |          |          |
+
+
+* 响应参数
+
+| 参数名   | 参数说明    | 备注            |
+| -------- | ----------- | --------------- |
+| username | 用户名      |                 |
+| mobile   | 手机号      |                 |
+| type     | 类型        |老师为0 ,学生为1 |
+| campusId | 校园网账号  |                |
+| timetable| 课表数据    |                |
+| msg       | 返回消息   |                |
+| status    | 请求状态   |                |
+
+* 响应数据
+
+```javascript
+{
+    "data": {
+        "mobile": "123",
+        "username": "张三",
+        "type": "1",
+        "campusId": "20183000000",
+        "timetable": {}
+    },
+    "meta": {
+        "msg": "获取成功",
+        "status": 200
+    }
+}
+```
+
+
+### xls文件上传
 
 * 请求路径：upload
 * 请求方法：post
@@ -122,14 +163,22 @@
 
 | 参数名 | 参数说明 | 备注 |
 | ------ | -------- | ---- |
-| timetable| 课表数据     |      |
-| msg       | 返回消息     |      |
-| status      | 请求状态 |      |
+| username | 用户名      |                 |
+| mobile   | 手机号      |                 |
+| type     | 类型        |老师为0 ,学生为1 |
+| campusId | 校园网账号  |                |
+| timetable| 课表数据    |                |
+| msg       | 返回消息   |                |
+| status    | 请求状态   |                |
 * 响应数据
 
 ```javascript
 {
     "data": {
+        "mobile": "123",
+        "username": "张三",
+        "type": "1",
+        "campusId": "20183000000",
         "timetable": {}
     },
     "meta": {
@@ -139,7 +188,113 @@
 }
 ```
 
+## 推送
+
+### 获取推送
+
+
+* 请求路径：getpush
+* 请求方法：get
+* 请求参数
+
+| 参数名 | 参数说明 | 备注 |
+| ------ | -------- | ---- |
+|        |          |      |
+
+* 响应参数
+
+| 参数名 | 参数说明 | 备注 |
+| ------ | -------- | ---- |
+| className | 课程名称   |                |
+| classTime | 课程时间   |                |
+| pushId    | 推送id     |                |
+| pushTime  | 推送时间   |                |
+| msg       | 返回消息   |                |
+| status    | 请求状态   |                |
+* 响应数据
+
+```javascript
+{
+        "pushData": [
+        {
+            "className": "",
+            "classTime": "",
+            "pushId": "",
+            "pushTime": ""
+        },
+        {
+            "className": "",
+            "classTime": "",
+            "pushId": "",
+            "pushTime": ""
+        }
+    ],
+    "meta": {
+        "msg": "推送添加成功",
+        "status": 200
+    }
+}
+```
+
+### 添加推送
+
+* 请求路径：addpush
+* 请求方法：post
+* 请求参数
+
+| 参数名 | 参数说明 | 备注 |
+| ------ | -------- | ---- |
+| className | 课程名称   |                |
+| classTime | 课程时间   |                |
+| pushTime  | 推送时间   |                |
+
+* 响应参数
+
+| 参数名 | 参数说明 | 备注 |
+| ------ | -------- | ---- |
+| msg       | 返回消息   |                |
+| status    | 请求状态   |                |
+* 响应数据
+
+```javascript
+{
+    "meta": {
+        "msg": "推送添加成功",
+        "status": 200
+    }
+}
+```
+
+### 删除推送
+
+
+* 请求路径：delpush
+* 请求方法：post
+* 请求参数
+
+| 参数名 | 参数说明 | 备注 |
+| ------ | -------- | ---- |
+| pushId    | 推送id     |                |
+
+* 响应参数
+
+| 参数名 | 参数说明 | 备注 |
+| ------ | -------- | ---- |
+| msg       | 返回消息   |                |
+| status    | 请求状态   |                |
+* 响应数据
+
+```javascript
+{
+    "meta": {
+        "msg": "推送删除成功",
+        "status": 200
+    }
+}
+```
+
 ## 管理
+
 ### 管理员登录
 
 * 请求路径：admin/login
@@ -155,9 +310,9 @@
 
 | 参数名 | 参数说明 | 备注 |
 | ------ | -------- | ---- |
-| pushData | 推送任务数据     |      |
-| msg       | 返回消息     |      |
-| status      | 请求状态 |      |
+| pushData | 推送任务数据   |      |
+| msg      | 返回消息       |      |
+| status   | 请求状态       |      |
 
 * 响应数据
 
@@ -172,24 +327,69 @@
     }
 }
 ```
-### 增加用户
+### 添加用户
+
+* 请求路径：register
+* 请求方法：post
+* 请求参数
+
+| 参数名   | 参数说明 | 备注     |
+| -------- | -------- | -------- |
+| username | 用户名称 | 不能为空 |
+| password | 用户密码 | 不能为空 |
+| mobile   | 手机号   | 不能为空 |
+| type   | 类型   | 不能为空 |
+| schoolnumber   | 校园网账号   | 不能为空 |
+| college   | 学院   | 不能为空 |
+
+
+* 响应参数
+
+| 参数名   | 参数说明    | 备注 |
+| -------- | ----------- | ---- |
+| msg       | 返回消息     |      |
+| status      | 请求状态 |      |
+
+
+* 响应数据
+
+```javascript
+{
+    "meta": {
+        "msg": "用户添加成功",
+        "status": 200
+    }
+}
+```
 
 ### 删除用户
 
+* 请求路径：deluser
+* 请求方法：post
+* 请求参数
+
+| 参数名   | 参数说明 | 备注     |
+| -------- | -------- | -------- |
+| username | 用户名称 |         |
 
 
 
-## 数据统计
+* 响应参数
 
-### 基于人数统计（饼图）
+| 参数名   | 参数说明    | 备注 |
+| -------- | ----------- | ---- |
+| msg       | 返回消息     |      |
+| status      | 请求状态 |      |
 
-* 请求路径：
-* 请求方法：get
+
 * 响应数据
 
-### 基于每日推送统计（折线图）
-
-* 请求路径：
-* 请求方法：get
-* 响应数据
+```javascript
+{
+    "meta": {
+        "msg": "用户删除成功",
+        "status": 200
+    }
+}
+```
 
