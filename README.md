@@ -163,10 +163,6 @@
 
 | 参数名 | 参数说明 | 备注 |
 | ------ | -------- | ---- |
-| username | 用户名      |                 |
-| mobile   | 手机号      |                 |
-| type     | 类型        |老师为0 ,学生为1 |
-| campusId | 校园网账号  |                |
 | timetable| 课表数据    |                |
 | msg       | 返回消息   |                |
 | status    | 请求状态   |                |
@@ -175,10 +171,6 @@
 ```javascript
 {
     "data": {
-        "mobile": "123",
-        "username": "张三",
-        "type": "1",
-        "campusId": "20183000000",
         "timetable": {}
     },
     "meta": {
